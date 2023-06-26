@@ -86,6 +86,7 @@ Insert the following into the shell:
 7. post.save()
 8. If everything is alright exit the shell with:
 exit()
+
 If no errors occurred, your site now has posts and you are good to go.
 
 
