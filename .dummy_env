@@ -1,0 +1,13 @@
+SECRET_KEY=#django app key
+
+DB_ENGINE=#db_engine
+DB_NAME=#db_name
+
+# email smtp server
+EHOST=#smtp hostname
+EHOST_USER=#smtp Username 
+EHOST_PASSWORD=#smtp Password
+EHOST_PORT=#smtp Port
+
+# Don't leave spaces before or after '='
+# rename file to .env in your project

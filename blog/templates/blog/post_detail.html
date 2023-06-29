@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="profile-image">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="me-1" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y"}}</small>
+            {% if object.author.username == user.username %}
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Post</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Post</a>
+            </div>
+        </div>
+        <h2 class="article-title">{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+        {% elif user.is_staff and not object.author.is_staff or user.is_staff and not object.author.is_superuser %}
+        <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Edit Post</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Post</a>
+        </div>
+    </div>
+    <h2 class="article-title">{{ object.title }}</h2>
+    <p class="article-content">{{ object.content }}</p>
+    {% elif user.is_staff and object.author.is_superuser or not user.is_authenticated or user.is_authenticated %}
+    </div>
+    <h2 class="article-title">{{ object.title }}</h2>
+    <p class="article-content">{{ object.content }}</p>
+    {% endif %}
+    </div>
+</article>
+{% endblock content %}
